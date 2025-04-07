@@ -45,6 +45,7 @@ class CartManager {
         }else{
             selectedcart.products.push({
                 [newCart.product]: selectedproductId
+                [newCart.quantity]
             })
         }
         await fs.promises.writeFile(this.path, JSON.stringify(cart,null,2))
