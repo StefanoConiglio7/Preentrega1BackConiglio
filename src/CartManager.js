@@ -44,8 +44,8 @@ class CartManager {
             existingproduct.quantity+=1
         }else{
             selectedcart.products.push({
-                [newCart.product]: selectedproductId
-                [newCart.quantity]
+                [newCart.product]: selectedproductId,
+                ...newCart
             })
         }
         await fs.promises.writeFile(this.path, JSON.stringify(cart,null,2))
