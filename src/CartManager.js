@@ -34,7 +34,7 @@ class CartManager {
     addProductToCart= async (cartId, productId,newCart) => {
         const cartJson= await fs.promises.readFile(this.path, "utf8")
         const cart=JSON.parse(cartJson)
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
+        const productsJson= await fs.promises.readFile(this.path2, "utf8");
         const products= JSON.parse(productsJson)
         const selectedproduct= products.find(p=> p.id=== Number(productId))
         const selectedproductId= selectedproduct.id
