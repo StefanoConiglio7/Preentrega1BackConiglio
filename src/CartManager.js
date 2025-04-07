@@ -42,6 +42,7 @@ class CartManager {
         const existingproduct= selectedcart.products.find(e=> e[newCart.product]=== Number(productId))
         if (existingproduct) {
             existingproduct.quantity+=1
+            existingproduct.product= selectedproductId
         }else{
             selectedcart.products.push({
                 [newCart.product]: selectedproductId,
