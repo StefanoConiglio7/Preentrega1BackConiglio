@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1744058542151,
+    "title": "Camiseta deportiva",
+    "description": "Camiseta ligera y transpirable, ideal para actividades deportivas.",
+    "code": "SPORT123",
+    "price": 29.99,
+    "status": true,
+    "stock": 100,
+    "category": "Ropa deportiva",
+    "thumbnails": "https://example.com/images/camiseta.jpg"
+  }
+]
