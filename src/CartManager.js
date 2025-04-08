@@ -39,15 +39,15 @@ class CartManager {
         const selectedproduct= products.find(p=> p.id=== Number(productId))
         const selectedproductId= selectedproduct.id
         const selectedcart= cart.find(c=> c.id === Number(cartId))
-        const existingproduct= selectedcart.products.find(e=> e[newCart.product]=== Number(productId))
+        const altcart= {...newCart}
+        const existingproduct= selectedcart.products.find(e=> e.product=== Number(productId))
+        if(altcart.product===""){
+            altcart.product= selectedproductId
+        }
         if (existingproduct) {
             existingproduct.quantity+=1
-            existingproduct.product= selectedproductId
         }else{
-            selectedcart.products.push({
-                [newCart.product]: selectedproductId,
-                ...newCart
-            })
+            selectedcart.products.push(altcart)
         }
         await fs.promises.writeFile(this.path, JSON.stringify(cart,null,2))
         return cart
