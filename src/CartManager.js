@@ -41,7 +41,10 @@ class CartManager {
         const selectedcart= cart.find(c=> c.id === Number(cartId))
         const altcart= {...newCart}
         const existingproduct= selectedcart.products.find(e=> e.product=== Number(productId))
-        if(altcart.product===""){
+        if(
+            typeof altcart.product==="string"|| 
+            typeof altcart.product === "number"||
+            typeof altcart.product === "boolean"){
             altcart.product= selectedproductId
         }
         if (existingproduct) {
