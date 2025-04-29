@@ -37,17 +37,10 @@ class ProductManager {
     updateProduct=async(ParamId,updatedproduct)=>{
         const productsJson= await fs.promises.readFile(this.path, "utf8");
         const products=JSON.parse(productsJson);
-        if (
-            typeof updatedproduct.title !== "string" || 
-            typeof updatedproduct.description !== "string" || 
-            typeof updatedproduct.code !== "string" || 
-            typeof updatedproduct.price !== "number" ||  
-            typeof updatedproduct.stock !== "number" || 
-            typeof updatedproduct.category !== "string" 
-        ) {
-            console.error("Ingrese bien los datos");
-            return;
-        }
+        if (updatedproduct.price && updatedproduct.stock) {
+            Number(updatedproduct.price)
+            Number(updatedproduct.stock)
+          }
         
         const index= products.findIndex(p=> p.id==ParamId)
         if (index===-1) {
