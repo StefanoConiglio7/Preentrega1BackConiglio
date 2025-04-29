@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1744772220196,
+    "title": "Joystick Ps5",
+    "description": "Descripción detallada del producto.",
+    "code": "ABC123",
+    "price": 199.99,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": "ruta/a/la/imagen1.jpg"
+  },
+  {
+    "id": 1745635876004,
+    "title": "Joystick Ps4",
+    "description": "Descripción detallada del producto.",
+    "code": "ABC123",
+    "price": 400,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": "ruta/a/la/imagen1.jpg"
+  },
+  {
+    "id": 1745641235150,
+    "title": "sdgfs",
+    "description": "fdsgfds",
+    "code": "fdgfd",
+    "price": 1,
+    "stock": 1,
+    "category": "electronica"
+  },
+  {
+    "id": 1745641330277,
+    "title": "sdgfs",
+    "description": "fdsgfds",
+    "code": "fdgfd",
+    "price": 1,
+    "stock": 1,
+    "category": "electronica",
+    "status": true,
+    "thumbnail": ""
+  },
+  {
+    "id": 1745641578084,
+    "title": "sdaf",
+    "description": "fdsa",
+    "code": "fdgfd",
+    "price": 5,
+    "stock": 1,
+    "category": "electronica",
+    "status": true,
+    "thumbnail": ""
+  },
+  {
+    "id": 1745866148637,
+    "title": "vcxvc",
+    "description": "vcb",
+    "code": "xvcb",
+    "price": "1",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745866163329,
+    "title": "cxzv",
+    "description": "cxz",
+    "code": "zcx",
+    "price": "2",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745866564554,
+    "title": "vbccv",
+    "description": "vvcb",
+    "code": "vbcvb",
+    "price": "3",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745866764831,
+    "title": "hola",
+    "description": "gfdgssg",
+    "code": "fdgfd",
+    "price": "1",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745885610555,
+    "title": "sd",
+    "description": "sd",
+    "code": "ds",
+    "price": "2",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745886375197,
+    "title": "v",
+    "description": "c",
+    "code": "v",
+    "price": "2",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745887339541,
+    "title": "jh",
+    "description": "h",
+    "code": "j",
+    "price": "3",
+    "stock": "1",
+    "category": "electronica"
+  },
+  {
+    "id": 1745888800098,
+    "title": "e",
+    "description": "e",
+    "code": "sdfdsaas",
+    "price": "2",
+    "stock": "1",
+    "category": "electronica"
+  }
+]

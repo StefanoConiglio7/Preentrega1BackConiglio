@@ -2,8 +2,8 @@ import fs from "fs"
 
 class CartManager {
     constructor() {
-        this.path= "./src/cart.json"
-        this.path2= "./src/products.json"
+        this.path= "./src/data/cart.json"
+        this.path2= "./src/data/products.json"
     }
     addToCart=async(newCart)=>{
         const cartJson= await fs.promises.readFile(this.path, "utf8")
@@ -52,7 +52,7 @@ class CartManager {
             altcart.product= selectedproductId
         }
         if (existingproduct) {
-            existingproduct.quantity+=1
+            existingproduct.quantity+= newCart.quantity
         }else{
             selectedcart.products.push(altcart)
         }

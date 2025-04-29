@@ -2,7 +2,7 @@ import { error } from "console";
 import fs from "fs"
 class ProductManager {
     constructor() {
-        this.path= "./src/products.json";
+        this.path= "./src/data/products.json";
     }
     getproducts=async()=>{
         const productsJson= await fs.promises.readFile(this.path, "utf8");
@@ -18,20 +18,10 @@ class ProductManager {
     addproduct=async(newProduct)=>{
         const productsJson= await fs.promises.readFile(this.path, "utf8");
         const products=JSON.parse(productsJson);
-        if (
-            typeof newProduct.title !== "string" || 
-            typeof newProduct.description !== "string" || 
-            typeof newProduct.code !== "string" || 
-            typeof newProduct.price !== "number" || 
-            typeof newProduct.status !== "boolean" || 
-            typeof newProduct.stock !== "number" || 
-            typeof newProduct.category !== "string" || 
-            typeof newProduct.thumbnails !== "string"
-        ) {
-            console.error("Ingrese bien los datos");
-            return;
+        if (newProduct.price && newProduct.stock) {
+          Number(newProduct.price)
+          Number(newProduct.stock)
         }
-        
         const id= Date.now()
         products.push({
             id,
@@ -51,11 +41,9 @@ class ProductManager {
             typeof updatedproduct.title !== "string" || 
             typeof updatedproduct.description !== "string" || 
             typeof updatedproduct.code !== "string" || 
-            typeof updatedproduct.price !== "number" || 
-            typeof updatedproduct.status !== "boolean" || 
+            typeof updatedproduct.price !== "number" ||  
             typeof updatedproduct.stock !== "number" || 
-            typeof updatedproduct.category !== "string" || 
-            typeof updatedproduct.thumbnails !== "string"
+            typeof updatedproduct.category !== "string" 
         ) {
             console.error("Ingrese bien los datos");
             return;
