@@ -1,67 +1,86 @@
-import { error } from "console";
+import { error, log } from "console";
 import fs from "fs"
 class ProductManager {
     constructor() {
         this.path= "./src/data/products.json";
     }
     getproducts=async()=>{
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
-        const products=JSON.parse(productsJson);
-        return products;
+        try {
+            const productsJson= await fs.promises.readFile(this.path, "utf8");
+            const products=JSON.parse(productsJson);
+            return products;
+        } catch (error) {
+            error
+        }
     }
     getproductById=async(id)=>{
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
-        const products= JSON.parse(productsJson);
-        const productid= products.find(p=> p.id===Number(id))
-        return productid
+        try {
+            const productsJson= await fs.promises.readFile(this.path, "utf8");
+            const products= JSON.parse(productsJson);
+            const productid= products.find(p=> p.id===Number(id))
+            return productid    
+        } catch (error) {
+            error
+        }
     }
     addproduct=async(newProduct)=>{
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
-        const products=JSON.parse(productsJson);
-        if (newProduct.price && newProduct.stock) {
-          Number(newProduct.price)
-          Number(newProduct.stock)
+        try {
+            const productsJson= await fs.promises.readFile(this.path, "utf8");
+            const products=JSON.parse(productsJson);
+            if (newProduct.price && newProduct.stock) {
+                newProduct.price = Number(newProduct.price);
+                newProduct.stock = Number(newProduct.stock);
+            }
+            
+            const id= Date.now()
+            const productToAdd = {
+                id,
+                ...newProduct,
+              };
+          
+              products.push(productToAdd);
+            await fs.promises.writeFile(this.path, JSON.stringify(products,null,2));
+            return productToAdd
+        } catch (error) {
+            error
         }
-        const id= Date.now()
-        products.push({
-            id,
-            ...newProduct
-        })
-        Object.defineProperty(products[products.length-1], "id", {
-            writable:false,
-            configurable:false
-        })
-        await fs.promises.writeFile(this.path, JSON.stringify(products,null,2));
-        return products
     }
     updateProduct=async(ParamId,updatedproduct)=>{
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
-        const products=JSON.parse(productsJson);
-        if (updatedproduct.price && updatedproduct.stock) {
-            Number(updatedproduct.price)
-            Number(updatedproduct.stock)
-          }
-        
-        const index= products.findIndex(p=> p.id==ParamId)
-        if (index===-1) {
-            console.error("Producto inexistente")
-            return
+        try {
+            const productsJson= await fs.promises.readFile(this.path, "utf8");
+            const products=JSON.parse(productsJson);
+            if (updatedproduct.price && updatedproduct.stock) {
+                updatedproduct.price=Number(updatedproduct.price)
+                updatedproduct.stock=Number(updatedproduct.stock)
+              }
+            
+            const index= products.findIndex(p=> p.id==ParamId)
+            if (index===-1) {
+                console.error("Producto inexistente")
+                return
+            }
+            products[index]={...products[index],...updatedproduct}
+            await fs.promises.writeFile(this.path, JSON.stringify(products,null,2));
+            return products[index]
+        } catch (error) {
+             error 
         }
-        products[index]={...products[index],...updatedproduct}
-        await fs.promises.writeFile(this.path, JSON.stringify(products,null,2));
-        return products[index]
     }
     deleteUserById= async(ParamId) => {
-        const productsJson= await fs.promises.readFile(this.path, "utf8");
-        const products=JSON.parse(productsJson);
-        const existId= products.findIndex(product => product.id===Number(ParamId))
-        if (existId===-1) {
-            console.error("Producto inexistente")
-            return
+        try {
+            const productsJson= await fs.promises.readFile(this.path, "utf8");
+            const products=JSON.parse(productsJson);
+            const existId= products.findIndex(product => product.id===Number(ParamId))
+            if (existId===-1) {
+                console.error("No existe")
+                return
+            }
+            const filterId= products.filter(p=>p.id!==Number(ParamId))
+            await fs.promises.writeFile(this.path, JSON.stringify(filterId,null,2));
+            return filterId
+        } catch (error) {
+            error
         }
-        const filterId= products.filter(p=>p.id!==Number(ParamId))
-        await fs.promises.writeFile(this.path, JSON.stringify(filterId,null,2));
-        return filterId
         
     }
     

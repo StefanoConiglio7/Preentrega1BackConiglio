@@ -16,10 +16,11 @@ formNewProduct.addEventListener("submit", (event)=> {
 })
 
 socket.on("productAdded", (newProduct)=> {
+  console.log("Producto recibido del servidor:", newProduct);
   const productsList = document.getElementById("productsList");
   const listItem = document.createElement("li");
   
-  listItem.innerHTML = `${newProduct.title} - ${newProduct.price} 
+  listItem.innerHTML = `${newProduct.title} : ${newProduct.price} 
   <button class="delete-button" id="${newProduct.id}">Eliminar</button>`;
   
   productsList.appendChild(listItem);

@@ -28,6 +28,7 @@ io.on("connection", (socket)=> {
 
   socket.on("newProduct", async(productData)=> {
     try {
+      console.log("Datos recibidos del cliente:", productData)
       const newProduct = await productManager.addproduct(productData);
 
       io.emit("productAdded", newProduct);
