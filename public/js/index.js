@@ -6,35 +6,53 @@ formNewProduct.addEventListener("submit", (event)=> {
   event.preventDefault();
 
   const formData = new FormData(formNewProduct);
-  const productData = {};
+  const productData = { status: false }; 
 
-  formData.forEach((value, key)=> {
-    productData[key] = value;
+  formData.forEach((value, key) => {
+    if (key === "status") {
+      productData[key] = formNewProduct.elements[key].checked; 
+    } else {
+      productData[key] = value;
+    }
   });
+
+
 
   socket.emit("newProduct", productData);
 })
 
-socket.on("productAdded", (newProduct)=> {
-  console.log("Producto recibido del servidor:", newProduct);
+socket.on("productAdded", (newProduct) => {
   const productsList = document.getElementById("productsList");
   const listItem = document.createElement("li");
-  
-  listItem.innerHTML = `${newProduct.title} : ${newProduct.price} 
-  <button class="delete-button" id="${newProduct.id}">Eliminar</button>`;
-  
-  productsList.appendChild(listItem);
 
-  const button = listItem.querySelector(".delete-button");
-  button.addEventListener("click", () => {
-    socket.emit("deleteProduct", newProduct.id); 
-  });
+  listItem.setAttribute("data-id", newProduct._id); 
+  listItem.innerHTML = `
+    ${newProduct.title} : ${newProduct.price} 
+    <button onclick="deleteProduct('${newProduct._id}')">Eliminar</button>
+    <button onclick="viewProductDetail('${newProduct._id}')">Ver detalles</button>
+  `;
+
+  productsList.appendChild(listItem);
 });
 
-socket.on("productDeleted", (deletedProductId) => {
-  const productElement = document.getElementById(deletedProductId);
-  if (productElement) {
-    productElement.parentElement.remove(); 
+function viewProductDetail(productId) {
+  window.location.href = `/product/${productId}`; 
+}
+
+
+function deleteProduct(productId) {
+  socket.emit("deleteProduct", productId);
+}
+
+
+socket.on("productDeleted", (productId) => {
+  const listItem = document.querySelector(`li[data-id="${productId}"]`);
+  if (listItem) {
+    listItem.remove(); 
   }
 });
+
+
+
+
 

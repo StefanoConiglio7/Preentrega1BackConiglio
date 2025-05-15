@@ -1,8 +1,17 @@
 <div>
     <h1>Lista de productos</h1>
     <ul>
-        {{#each products}}
-            <li>{{this.title}}:{{this.price}}</li>
+        {{#each docs}}
+            <li>{{this.title}}: ${{this.price}}</li>
         {{/each}}
     </ul>
+    <p>Total de productos: {{totalDocs}}</p>
+    {{#if hasPrevPage}}
+        <a href="?page={{prevPage}}">Anterior</a>
+    {{/if}}
+    {{#if hasNextPage}}
+        <a href="?page={{nextPage}}">Siguiente</a>
+    {{/if}}
+    <p>Página {{page}} de {{totalPages}}</p>
+    <p>Productos por página: {{limit}}</p>
 </div>

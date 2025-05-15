@@ -4,18 +4,28 @@
     <input type="text" name="description" placeholder="ingrese la descripcion" required>
     <input type="text" name="code" placeholder="ingrese el codigo" required>
     <input type="number" name="price" placeholder="ingrese el precio" required>
+    <input type="checkbox" name="status" value="true" checked>
     <input type="number" name="stock" placeholder="ingrese el stock" required>
     <input type="text" name="category" placeholder="ingrese la categoria" required>
-
+    <input type="text" name="thumbnails" placeholder="ingrese la ruta" required>
     <button type="submit">Enviar</button>
   </form>
 
   <h2>Lista de productos</h2>
   <ul id="productsList">
-    {{#each products}}
-      <li>{{this.title}} : {{this.price}}</li>
-    {{/each}}
+    {{#each docs}}
+            <li>{{this.title}}: ${{this.price}}</li>
+        {{/each}}
   </ul>
+  <p>Total de productos: {{totalDocs}}</p>
+    {{#if hasPrevPage}}
+        <a href="?page={{prevPage}}">Anterior</a>
+    {{/if}}
+    {{#if hasNextPage}}
+        <a href="?page={{nextPage}}">Siguiente</a>
+    {{/if}}
+    <p>Página {{page}} de {{totalPages}}</p>
+    <p>Productos por página: {{limit}}</p>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>
